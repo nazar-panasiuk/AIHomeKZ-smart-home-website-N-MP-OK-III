@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>AIHomeKZ</title>
+        <link rel="icon" href="favicon.ico" />
+        <link href="style.css" rel="stylesheet" />
+    </head>
+
+    <body
+        x-data="{ page: 'home', 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false }"
+        x-init="
+         darkMode = JSON.parse(localStorage.getItem('darkMode'));
+         $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
+        :class="{'b eh': darkMode === true}"
+    >
+        <!-- ===== Header Start ===== -->
+        <header
+            class="g s r vd ya cj"
+            :class="{ 'hh sm _k dj bl ll' : stickyMenu }"
+            @scroll.window="stickyMenu = (window.pageYOffset > 20) ? true : false"
+        >
+            <div class="bb ze ki xn 2xl:ud-px-0 oo wf yf i">
+                <div class="vd to/4 tc wf yf">
+                    <a href="index.html">
+                        <h1
+                            style="
+                                color: #4e6bff;
+                                font-size: 1.5rem;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                            "
+                        >
+                            AIHomeKZ
+                        </h1>
+                    </a>
+
+                    <!-- Hamburger Toggle BTN -->
+                    <button
+                        class="po rc"
+                        @click="navigationOpen = !navigationOpen"
+                    >
+                        <span class="rc i pf re pd">
+                            <span class="du-block h q vd yc">
+                                <span
+                                    class="rc i r s eh um tg te rd eb ml jl dl"
+                                    :class="{ 'ue el': !navigationOpen }"
+                                ></span>
+                                <span
+                                    class="rc i r s eh um tg te rd eb ml jl fl"
+                                    :class="{ 'ue qr': !navigationOpen }"
+                                ></span>
+                                <span
+                                    class="rc i r s eh um tg te rd eb ml jl gl"
+                                    :class="{ 'ue hl': !navigationOpen }"
+                                ></span>
+                            </span>
+                            <span class="du-block h q vd yc lf">
+                                <span
+                                    class="rc eh um tg ml jl el h na r ve yc"
+                                    :class="{ 'sd dl': !navigationOpen }"
+                                ></span>
+                                <span
+                                    class="rc eh um tg ml jl qr h s pa vd rd"
+                                    :class="{ 'sd rr': !navigationOpen }"
+                                ></span>
+                            </span>
+                        </span>
+                    </button>
+                    <!-- Hamburger Toggle BTN -->
+                </div>
+
+                <div
+                    class="vd wo/4 sd qo f ho oo wf yf"
+                    :class="{ 'd hh rm sr td ud qg ug jc yh': navigationOpen }"
+                >
+                    <nav>
+                        <ul class="tc _o sf yo cg ep">
+                            <li>
+                                <a
+                                    href="index.html"
+                                    class="xl"
+                                    :class="{ 'mk': page === 'home' }"
+                                    >Главная</a
+                                >
+                            </li>
+                            <li>
+                                <a href="about.html" class="xl">О нас</a>
+                            </li>
+                            <li>
+                                <a href="index.html#features" class="xl"
+                                    >Умный дом</a
+                                >
+                            </li>
+                            <li>
+                                <a href="blog-grid.html" class="xl">Блог</a>
+                            </li>
+                            <li>
+                                <a href="contact.html" class="xl">Контакты</a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <div class="tc wf ig pb no">
+                        <div
+                            class="pc h io pa ra"
+                            :class="navigationOpen ? '!-ud-visible' : 'd'"
+                        >
+                            <label class="rc ab i">
+                                <input
+                                    type="checkbox"
+                                    :value="darkMode"
+                                    @change="darkMode = !darkMode"
+                                    class="pf vd yc uk h r za ab"
+                                />
+                                <!-- Icon Sun -->
+                                <svg
+                                    :class="{ 'wn' : page === 'home', 'xh' : page === 'home' && stickyMenu }"
+                                    class="th om"
+                                    width="25"
+                                    height="25"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M12.0908 18.6363C10.3549 18.6363 8.69 17.9467 7.46249 16.7192C6.23497 15.4916 5.54537 13.8268 5.54537 12.0908C5.54537 10.3549 6.23497 8.69 7.46249 7.46249C8.69 6.23497 10.3549 5.54537 12.0908 5.54537C13.8268 5.54537 15.4916 6.23497 16.7192 7.46249C17.9467 8.69 18.6363 10.3549 18.6363 12.0908C18.6363 13.8268 17.9467 15.4916 16.7192 16.7192C15.4916 17.9467 13.8268 18.6363 12.0908 18.6363ZM12.0908 16.4545C13.2481 16.4545 14.358 15.9947 15.1764 15.1764C15.9947 14.358 16.4545 13.2481 16.4545 12.0908C16.4545 10.9335 15.9947 9.8236 15.1764 9.00526C14.358 8.18692 13.2481 7.72718 12.0908 7.72718C10.9335 7.72718 9.8236 8.18692 9.00526 9.00526C8.18692 9.8236 7.72718 10.9335 7.72718 12.0908C7.72718 13.2481 8.18692 14.358 9.00526 15.1764C9.8236 15.9947 10.9335 16.4545 12.0908 16.4545ZM10.9999 0.0908203H13.1817V3.36355H10.9999V0.0908203ZM10.9999 20.8181H13.1817V24.0908H10.9999V20.8181ZM2.83446 4.377L4.377 2.83446L6.69082 5.14828L5.14828 6.69082L2.83446 4.37809V4.377ZM17.4908 19.0334L19.0334 17.4908L21.3472 19.8046L19.8046 21.3472L17.4908 19.0334ZM19.8046 2.83337L21.3472 4.377L19.0334 6.69082L17.4908 5.14828L19.8046 2.83446V2.83337ZM5.14828 17.4908L6.69082 19.0334L4.377 21.3472L2.83446 19.8046L5.14828 17.4908ZM24.0908 10.9999V13.1817H20.8181V10.9999H24.0908ZM3.36355 10.9999V13.1817H0.0908203V10.9999H3.36355Z"
+                                        fill=""
+                                    />
+                                </svg>
+                                <!-- Icon Sun -->
+                                <img
+                                    class="xc nm"
+                                    src="images/icon-moon.svg"
+                                    alt="Moon"
+                                />
+                            </label>
+                        </div>
+
+                        <a
+                            href="signup.html"
+                            :class="{ 'hh/[0.15]' : page === 'home', 'sh' : page === 'home' && stickyMenu }"
+                            class="lk gh dk rg tc wf xf _l gi hi"
+                            >Связаться с нами</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ===== Header End ===== -->
+
+        <!-- ===== Privacy Policy Start ===== -->
+        <section class="ji gp uq 2xl:ud-py-35 pg">
+            <div class="bb ze ki xn wq">
+                <div class="tc wf gg qq">
+                    <!-- Privacy Policy Content -->
+                    <div class="animate_right jn/2" style="width: 100%">
+                        <h4 class="ek yj mk gb">Политика конфиденциальности</h4>
+                        <h2 class="fk vj zp pr kk wm qb">
+                            Как мы защищаем вашу личную информацию и данные в
+                            умном доме
+                        </h2>
+                        <p class="uo">
+                            Настоящая Политика конфиденциальности объясняет,
+                            каким образом наша платформа умного дома и новых
+                            технологий собирает, хранит, обрабатывает и защищает
+                            личные данные пользователей. Мы стремимся обеспечить
+                            высокий уровень безопасности ваших данных, а также
+                            прозрачность в их использовании для управления
+                            устройствами и сервисами умного дома.
+                        </p>
+                        <p class="uo">
+                            В процессе использования платформы мы можем собирать
+                            различные типы данных: информацию об устройствах,
+                            сценариях автоматизации, настройках освещения,
+                            климат-контроля, мультимедиа и бытовой техники, а
+                            также контактные данные, если вы их предоставляете.
+                            Эти данные необходимы для корректного
+                            функционирования системы, создания
+                            персонализированных сценариев и улучшения
+                            функциональности платформы.
+                        </p>
+                        <p class="uo">
+                            Мы используем передовые технологии для хранения и
+                            защиты информации, включая шифрование данных и
+                            ограничение доступа только авторизованным
+                            сотрудникам. Вся информация обрабатывается в
+                            соответствии с законодательством и международными
+                            стандартами безопасности, обеспечивая максимальную
+                            защиту ваших персональных данных и конфиденциальной
+                            информации.
+                        </p>
+                        <h3 class="ek yj mk gb">I. Какие данные мы собираем</h3>
+                        <p class="uo">
+                            Наша платформа собирает следующие категории данных:
+                        </p>
+                        <ul>
+                            <li>
+                                <strong>Идентификационные данные:</strong> имя,
+                                контактная информация, учетные записи
+                                пользователя.
+                            </li>
+                            <li>
+                                <strong>Данные об устройстве:</strong>
+                                информация о подключенных устройствах умного
+                                дома, типах сценариев, настройках освещения и
+                                климат-контроля.
+                            </li>
+                            <li>
+                                <strong>Технические данные:</strong> информация
+                                о браузере, IP-адресе, логах использования
+                                платформы, взаимодействии с интерфейсами и
+                                приложениями.
+                            </li>
+                            <li>
+                                <strong>Предпочтения и настройки:</strong>
+                                персональные сценарии автоматизации, расписания
+                                работы устройств, выбранные режимы мультимедиа и
+                                безопасности.
+                            </li>
+                        </ul>
+                        <p class="uo">
+                            Сбор этих данных позволяет предоставлять
+                            пользователям полноценный функционал умного дома,
+                            обеспечивать безопасность устройств и создавать
+                            персонализированные сценарии для комфорта и
+                            эффективности.
+                        </p>
+                        <h3 class="ek yj mk gb">
+                            II. Как мы используем ваши данные
+                        </h3>
+                        <p class="uo">
+                            Собранные данные используются исключительно для
+                            целей:
+                        </p>
+                        <ul>
+                            <li>
+                                Корректного функционирования платформы и
+                                управления устройствами умного дома.
+                            </li>
+                            <li>
+                                Создания персонализированных сценариев и
+                                улучшения пользовательского опыта.
+                            </li>
+                            <li>
+                                Анализа взаимодействия с платформой для
+                                оптимизации интерфейсов и функциональности.
+                            </li>
+                            <li>
+                                Обеспечения безопасности системы и
+                                предотвращения несанкционированного доступа к
+                                устройствам.
+                            </li>
+                            <li>
+                                Предоставления уведомлений о новых функциях и
+                                обновлениях платформы.
+                            </li>
+                        </ul>
+                        <p class="uo">
+                            Мы не передаем ваши персональные данные третьим
+                            лицам без вашего согласия, за исключением случаев,
+                            когда это необходимо для обеспечения работы
+                            платформы или в соответствии с требованиями
+                            законодательства.
+                        </p>
+                        <h3 class="ek yj mk gb">
+                            III. Хранение и защита данных
+                        </h3>
+                        <p class="uo">
+                            Все данные пользователей хранятся на защищенных
+                            серверах с применением современных методов
+                            шифрования. Доступ к информации ограничен и
+                            предоставляется только уполномоченным сотрудникам
+                            компании. Мы регулярно проводим аудит безопасности и
+                            обновляем протоколы защиты данных для предотвращения
+                            утечек и несанкционированного доступа.
+                        </p>
+                        <p class="uo">
+                            В случае интеграции с мобильными приложениями,
+                            голосовыми ассистентами или сторонними сервисами
+                            данные передаются только в безопасном виде и
+                            используются исключительно для управления умным
+                            домом и улучшения пользовательского опыта.
+                        </p>
+                        <h3 class="ek yj mk gb">IV. Права пользователей</h3>
+                        <p class="uo">Пользователи имеют право:</p>
+                        <ul>
+                            <li>
+                                Запрашивать доступ к своим персональным данным,
+                                которые хранятся на платформе.
+                            </li>
+                            <li>
+                                Вносить изменения или удалять свои данные при
+                                необходимости.
+                            </li>
+                            <li>
+                                Отключать определенные функции сбора данных,
+                                если это не влияет на базовое функционирование
+                                платформы.
+                            </li>
+                            <li>
+                                Получать разъяснения по использованию данных и
+                                защите конфиденциальности.
+                            </li>
+                        </ul>
+                        <p class="uo">
+                            Мы гарантируем, что все запросы пользователей
+                            обрабатываются в кратчайшие сроки и с соблюдением
+                            всех требований безопасности.
+                        </p>
+                        <h3 class="ek yj mk gb">
+                            V. Cookies и сторонние сервисы
+                        </h3>
+                        <p class="uo">
+                            Для оптимальной работы платформы мы используем
+                            cookies и аналогичные технологии. Cookies помогают
+                            сохранять ваши настройки, сценарии автоматизации и
+                            обеспечивать безопасный доступ к устройствам умного
+                            дома. Также мы интегрируем платформу с сторонними
+                            сервисами, которые могут использовать cookies для
+                            анализа производительности и улучшения функционала.
+                            Все сторонние сервисы работают в соответствии с
+                            собственными политиками конфиденциальности.
+                        </p>
+                        <h3 class="ek yj mk gb">
+                            VI. Изменения в Политике конфиденциальности
+                        </h3>
+                        <p class="uo">
+                            Мы можем обновлять данную Политику
+                            конфиденциальности в любое время. Все изменения
+                            будут публиковаться на этой странице. Продолжая
+                            использовать платформу после обновлений, вы
+                            подтверждаете согласие с новой версией политики.
+                            Рекомендуется периодически проверять актуальность
+                            документа, чтобы быть в курсе всех изменений и
+                            улучшений системы.
+                        </p>
+                        <h3 class="ek yj mk gb">VII. Контакты</h3>
+                        <p class="uo">
+                            Если у вас есть вопросы по обработке персональных
+                            данных или по Политике конфиденциальности,
+                            пожалуйста, свяжитесь с нашей службой поддержки:
+                        </p>
+                        <p class="uo">Email: inteli_dom@gmail.com</p>
+                        <p class="uo">Телефон: +77759287344</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ===== Privacy Policy End ===== -->
+
+        <!-- ===== Footer Start ===== -->
+        <footer>
+            <div class="bb ze ki xn 2xl:ud-px-0">
+                <!-- Footer Top -->
+                <div class="ji gp">
+                    <div class="tc uf ap gg fp">
+                        <div class="animate_top zd/2 to/4">
+                            <a href="index.html">
+                                <h1
+                                    style="
+                                        color: #4e6bff;
+                                        font-size: 1.5rem;
+                                        font-weight: bold;
+                                        text-transform: uppercase;
+                                    "
+                                >
+                                    AIHomeKZ
+                                </h1>
+                            </a>
+
+                            <p class="lc fb">
+                                Умные технологии для вашего дома: комфорт,
+                                безопасность и энергоэффективность.
+                            </p>
+
+                            <ul class="tc wf cg">
+                                <li>
+                                    <a href="#!">
+                                        <svg
+                                            class="vh ul cl il"
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <!-- Иконка Facebook -->
+                                        </svg>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#!">
+                                        <svg
+                                            class="vh ul cl il"
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <!-- Иконка Twitter -->
+                                        </svg>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#!">
+                                        <svg
+                                            class="vh ul cl il"
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <!-- Иконка LinkedIn -->
+                                        </svg>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#!">
+                                        <svg
+                                            class="vh ul cl il"
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <!-- Иконка Email -->
+                                        </svg>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="vd ro tc sf rn un gg vn">
+                            <div class="animate_top">
+                                <h4 class="kk wm tj ec">Быстрые ссылки</h4>
+                                <ul>
+                                    <li>
+                                        <a href="index.html" class="sc xl vb"
+                                            >Главная</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="blog-grid.html"
+                                            class="sc xl vb"
+                                            >Блог</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a href="contact.html" class="sc xl vb">
+                                            Контакты</a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="animate_top">
+                                <h4 class="kk wm tj ec">Услуги</h4>
+                                <ul>
+                                    <li>
+                                        <a
+                                            href="index.html#features"
+                                            class="sc xl vb"
+                                            >Автоматизация дома</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="index.html#features"
+                                            class="sc xl vb"
+                                            >Системы безопасности</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="index.html#features"
+                                            class="sc xl vb"
+                                            >Умное освещение</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="index.html#features"
+                                            class="sc xl vb"
+                                            >Управление энергией</a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="animate_top">
+                                <h4 class="kk wm tj ec">Адрес</h4>
+                                <ul>
+                                    <li>
+                                        <a href="#!" class="sc xl vb"
+                                            >Алматы 1/1, Астана 010000,
+                                            Казахстан</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a href="#!" class="sc xl vb"
+                                            >+77759287344</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a href="#!" class="sc xl vb"
+                                            >ai_home_kz@gmail.com</a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Footer Top -->
+
+                <!-- Footer Bottom -->
+                <div class="bh ch pm tc uf sf yo wf xf ap cg fp bj">
+                    <div class="animate_top">
+                        <ul class="tc wf gg">
+                            <li>
+                                <a href="cookie-policy.html" class="xl"
+                                    >Политика Cookies</a
+                                >
+                            </li>
+                            <li>
+                                <a href="privacy-policy.html" class="xl"
+                                    >Политика конфиденциальности</a
+                                >
+                            </li>
+                            <li>
+                                <a href="terms-of-use.html" class="xl"
+                                    >Поддержка</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Footer Bottom -->
+            </div>
+        </footer>
+        <!-- ===== Footer End ===== -->
+
+        <!-- Cookie banner -->
+        <div class="cookie-wrapper show">
+            <div>
+                <i class="bx bx-cookie"></i>
+                <h2 style="text-align: center">
+                    Согласие на использование Cookies
+                </h2>
+            </div>
+
+            <div class="data">
+                <p>
+                    Этот сайт использует cookies для улучшения взаимодействия с
+                    пользователем и персонализации опыта работы с нашими
+                    материалами по умному дому и технологиям.
+                    <a href="cookie-policy.html">Подробнее...</a>
+                </p>
+            </div>
+
+            <div class="buttons">
+                <button class="cookie-button" id="acceptBtn">Принять</button>
+                <button class="cookie-button" id="declineBtn">Отклонить</button>
+            </div>
+        </div>
+        <!-- End Cookie banner -->
+
+        <!-- ====== Back To Top Start ===== -->
+        <button
+            class="xc wf xf ie ld vg sr gh tr g sa ta _a"
+            @click="window.scrollTo({top: 0, behavior: 'smooth'})"
+            @scroll.window="scrollTop = (window.pageYOffset > 50) ? true : false"
+            :class="{ 'uc' : scrollTop }"
+        >
+            <svg
+                class="uh se qd"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+            >
+                <path
+                    d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z"
+                />
+            </svg>
+        </button>
+
+        <!-- ====== Back To Top End ===== -->
+
+        <script>
+            //  Pricing Table
+            const setup = () => {
+                return {
+                    isNavOpen: false,
+
+                    billPlan: "monthly",
+
+                    plans: [
+                        {
+                            name: "Starter",
+                            price: {
+                                monthly: 29,
+                                annually: 29 * 12 - 199,
+                            },
+                            features: [
+                                "400 GB Storaget",
+                                "Unlimited Photos & Videos",
+                                "Exclusive Support",
+                            ],
+                        },
+                        {
+                            name: "Growth Plan",
+                            price: {
+                                monthly: 59,
+                                annually: 59 * 12 - 100,
+                            },
+                            features: [
+                                "400 GB Storaget",
+                                "Unlimited Photos & Videos",
+                                "Exclusive Support",
+                            ],
+                        },
+                        {
+                            name: "Business",
+                            price: {
+                                monthly: 139,
+                                annually: 139 * 12 - 100,
+                            },
+                            features: [
+                                "400 GB Storaget",
+                                "Unlimited Photos & Videos",
+                                "Exclusive Support",
+                            ],
+                        },
+                    ],
+                };
+            };
+        </script>
+        <script defer src="bundle.js"></script>
+        <script defer src="cookiebanner.js"></script>
+    </body>
+</html>
